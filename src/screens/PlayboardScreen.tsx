@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React, { useState, useContext } from "react";
+import { View, StyleSheet } from "react-native";
 import { Board } from "../components/Board";
 import { CommonButton } from "../components/CommonButton";
 import { Player } from "../interfaces/playInterfaces";
 import { calculateWinner } from "../functions/functions";
+import { PlayerContext } from "../context/PlayerContext";
+import { HeaderContainer } from "../components/HeaderContainer";
 
 export const PlayboardScreen = () => {
+  const { player1Name, player2Name } = useContext(PlayerContext);
   const [squares, setSquares] = useState<Player[]>(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState<boolean>(true);
   const [winner, setWinner] = useState<Player | null>(null);
@@ -32,16 +35,19 @@ export const PlayboardScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text
-        style={{
-          color: "black",
-          fontSize: 20,
-          fontWeight: 'bold'
-        }}
-      >
-        Player 1
-      </Text>
-      <Board squares={squares} onPress={handlePress} winner={winner} player1Name='Player 1' player2Name="Player 2" />
+      <HeaderContainer
+        player1Name={player1Name}
+        player2Name={player2Name}
+        winner={winner}
+        isXNext={isXNext}
+      />
+      <Board
+        squares={squares}
+        onPress={handlePress}
+        winner={winner}
+        player1Name={player1Name}
+        player2Name={player2Name}
+      />
       <CommonButton onPress={handleReset} text="Reset Game" />
     </View>
   );
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#1B78AF",
     height: "100%",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
   },
 });

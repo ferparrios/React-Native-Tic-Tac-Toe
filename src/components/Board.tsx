@@ -17,13 +17,13 @@ export const Board = ({ squares, onPress, winner, player1Name, player2Name }: Bo
 
   return (
     <View style={styles.container}>
-      <Text style={styles.status}>
+      {/* <Text style={styles.status}>
         {winner
           ? `Winner: ${winner}`
           : `Next player: ${
               squares.filter(Boolean).length % 2 === 0 ? player1Name :player2Name
             }`}
-      </Text>
+      </Text> */}
       <View style={styles.board}>
         <View style={styles.boardRow}>
           {renderSquare(0)}

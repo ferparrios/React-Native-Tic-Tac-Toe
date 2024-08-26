@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "tic-tac-toe",
-    "slug": "tic-tac-toe",
+    "slug": "tic-tac-toe-game",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,10 +18,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ferparrios.tictactoegame"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d472c175-6d5f-4bd1-8b07-77514e05afb1"
+      }
+    },
+    "owner": "ferparrios"
   }
 }
