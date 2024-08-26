@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 // import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, View, Image } from "react-native";
-import TicTacToeLogo from "../../assets/Designer.png";
+import TicTacToeLogo from "../../assets/tic-tac-toe-logo.png";
 import { CommonButton } from "../components/CommonButton";
 import { PlayerNameModal } from "../components/PlayerNameModal";
 
