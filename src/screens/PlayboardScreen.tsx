@@ -6,12 +6,14 @@ import { Player } from "../interfaces/playInterfaces";
 import { calculateWinner } from "../functions/functions";
 import { PlayerContext } from "../context/PlayerContext";
 import { HeaderContainer } from "../components/HeaderContainer";
+import { WinnerModal } from "../components/WinnerModal";
 
 export const PlayboardScreen = () => {
   const { player1Name, player2Name } = useContext(PlayerContext);
   const [squares, setSquares] = useState<Player[]>(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState<boolean>(true);
   const [winner, setWinner] = useState<Player | null>(null);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const handlePress = (i: number) => {
     if (squares[i] || winner) return;
@@ -24,6 +26,7 @@ export const PlayboardScreen = () => {
     const winningPlayer = calculateWinner(newSquares);
     if (winningPlayer) {
       setWinner(winningPlayer);
+      setIsModalVisible(true);
     }
   };
 
@@ -49,6 +52,15 @@ export const PlayboardScreen = () => {
         player2Name={player2Name}
       />
       <CommonButton onPress={handleReset} text="Reset Game" />
+
+      <WinnerModal
+        isVisible={isModalVisible}
+        winner={winner}
+        player1Name="Player 1"
+        player2Name="Computer"
+        onNewGame={handleReset}
+        onClose={() => setIsModalVisible(false)}
+      />
     </View>
   );
 };

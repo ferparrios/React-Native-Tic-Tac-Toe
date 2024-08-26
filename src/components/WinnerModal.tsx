@@ -28,7 +28,10 @@ export const WinnerModal: React.FC<WinnerModalProps> = ({
       <View style={styles.modalContainer}>
         <View style={styles.container}>
           <Text style={styles.message}>{message}</Text>
-          <CommonButton text="New Game" onPress={onNewGame} />
+          <CommonButton text="New Game" onPress={() => {
+            onNewGame()
+            onClose()
+            }} />
           <TouchableOpacity onPress={onClose} style={styles.closeButton}>
             <Text style={styles.closeButtonText}>Close</Text>
           </TouchableOpacity>

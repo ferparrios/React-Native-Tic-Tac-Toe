@@ -15,41 +15,6 @@ export const OnePlayerGameScreen: React.FC = () => {
   const [winner, setWinner] = useState<Player | null>(null);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
-  console.log("Player 1 Name: ", player1Name);
-
-  // useEffect(() => {
-  //   if (!isXNext && !winner) {
-  //     const timer = setTimeout(() => {
-  //       const bestMove = findBestMove(squares);
-  //       if (bestMove !== null) {
-  //         const newSquares = squares.slice();
-  //         newSquares[bestMove] = "O";
-  //         setSquares(newSquares);
-  //         setIsXNext(true);
-
-  //         const winningPlayer = calculateWinner(newSquares);
-  //         if (winningPlayer) {
-  //           setWinner(winningPlayer);
-  //         }
-  //       }
-  //     }, 1000);
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [isXNext, squares, winner]);
-
-  // const handlePress = (i: number) => {
-  //   if (squares[i] || winner || !isXNext) return;
-
-  //   const newSquares = squares.slice();
-  //   newSquares[i] = "X";
-  //   setSquares(newSquares);
-  //   setIsXNext(false);
-
-  //   const winningPlayer = calculateWinner(newSquares);
-  //   if (winningPlayer) {
-  //     setWinner(winningPlayer);
-  //   }
-  // };
   useEffect(() => {
     if (!isXNext && !winner) {
       const timer = setTimeout(() => {
@@ -63,7 +28,7 @@ export const OnePlayerGameScreen: React.FC = () => {
           const winningPlayer = calculateWinner(newSquares);
           if (winningPlayer) {
             setWinner(winningPlayer);
-            setIsModalVisible(true); // Show the modal when a winner is detected
+            setIsModalVisible(true); 
           }
         }
       }, 1000);
@@ -82,20 +47,8 @@ export const OnePlayerGameScreen: React.FC = () => {
     const winningPlayer = calculateWinner(newSquares);
     if (winningPlayer) {
       setWinner(winningPlayer);
-      setIsModalVisible(true); // Show the modal when a winner is detected
+      setIsModalVisible(true); 
     }
-  };
-
-  const handleNewGame = () => {
-    // Resetea el juego
-    setWinner(null);
-    setIsModalVisible(false);
-  };
-
-  const handleReset = () => {
-    setSquares(Array(9).fill(null));
-    setIsXNext(true);
-    setWinner(null);
   };
 
   // const handleNewGame = () => {
@@ -103,9 +56,11 @@ export const OnePlayerGameScreen: React.FC = () => {
   //   setIsModalVisible(false);
   // };
 
-  // const handleShowModal = () => {
-  //   setIsModalVisible(true);
-  // };
+  const handleReset = () => {
+    setSquares(Array(9).fill(null));
+    setIsXNext(true);
+    setWinner(null);
+  };
 
   return (
     <View style={styles.boardContainer}>
@@ -130,7 +85,7 @@ export const OnePlayerGameScreen: React.FC = () => {
         winner={winner}
         player1Name="Player 1"
         player2Name="Computer"
-        onNewGame={handleNewGame}
+        onNewGame={handleReset}
         onClose={() => setIsModalVisible(false)}
       />
     </View>
