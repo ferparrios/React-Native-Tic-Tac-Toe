@@ -36,6 +36,8 @@ export const PlayboardScreen = () => {
     setWinner(null);
   };
 
+  console.log('Player 2: ', player2Name)
+
   return (
     <View style={styles.container}>
       <HeaderContainer
@@ -56,8 +58,8 @@ export const PlayboardScreen = () => {
       <WinnerModal
         isVisible={isModalVisible}
         winner={winner}
-        player1Name="Player 1"
-        player2Name="Computer"
+        player1Name={player1Name}
+        player2Name={player2Name || "Computer"}
         onNewGame={handleReset}
         onClose={() => setIsModalVisible(false)}
       />

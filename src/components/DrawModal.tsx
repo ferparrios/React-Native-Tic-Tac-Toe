@@ -2,45 +2,47 @@ import React from "react";
 import { Modal, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { CommonButton } from "./CommonButton";
 
-interface WinnerModalProps {
+interface DrawModalProps {
   isVisible: boolean;
-  winner: string | null;
-  player1Name: string;
-  player2Name: string;
+  winner?: string | null;
+  player1Name?: string;
+  player2Name?: string;
   onNewGame: () => void;
   onClose: () => void;
 }
 
-export const WinnerModal: React.FC<WinnerModalProps> = ({
+export const DrawModal: React.FC<DrawModalProps> = ({
   isVisible,
-  winner,
-  player1Name,
-  player2Name,
+  // winner,
+  // player1Name,
+  // player2Name,
   onNewGame,
   onClose,
 }) => {
-  const winnerMessage = (winner: string | null) => {
-    if (winner === "X") {
-      return "Winner: " + player1Name;
-    } else if (winner === "O") {
-      return "Winner: " + (player2Name || "Computer");
-    } else {
-      return "It's a Draw!";
-    }
-  };
+  // const message = winner
+  //   ? `Winner: ${winner === "X" ? player1Name : player2Name || "Computer"}`
+  //   : "It's a Draw!";
+
+  // console.log('Winner2: ', winner)
+  // const winnerMessage = (winner: string) => {
+  //   if (winner === "X"){
+  //     return "Winner: " + " " + player1Name
+  //   } else if (winner === null) {
+  //     return "It's a Draw!"
+  //   } else {
+  //     return "Winner: " + " " + player2Name || "Computer"
+  //   }
+  // }
 
   return (
     <Modal visible={isVisible} transparent={true} animationType="slide">
       <View style={styles.modalContainer}>
         <View style={styles.container}>
-          <Text style={styles.message}>{winnerMessage(winner)}</Text>
-          <CommonButton
-            text="New Game"
-            onPress={() => {
-              onNewGame();
-              onClose();
-            }}
-          />
+          <Text style={styles.message}>I'ts a Draw</Text>
+          <CommonButton text="New Game" onPress={() => {
+            onNewGame()
+            onClose()
+            }} />
           <TouchableOpacity onPress={onClose} style={styles.closeButton}>
             <Text style={styles.closeButtonText}>Close</Text>
           </TouchableOpacity>

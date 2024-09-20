@@ -17,6 +17,7 @@ export const HeaderContainer = ({
   isXNext,
 }: HeaderContainerProps) => {
   const navigation = useNavigation();
+  console.log(player2Name)
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -34,7 +35,7 @@ export const HeaderContainer = ({
       <Text style={styles.status}>
         {winner
           ? `Winner: ${winner === "X" ? player1Name : "Computer"}`
-          : `Next Player: ${isXNext ? player1Name : "Computer" || player2Name}`}
+          : `Next Player: ${isXNext ? player1Name :  player2Name || "Computer"}`}
       </Text>
     </View>
   );

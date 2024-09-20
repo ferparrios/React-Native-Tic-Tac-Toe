@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Board } from "../components/Board";
 import { Player } from "../interfaces/playInterfaces";
 import { CommonButton } from "../components/CommonButton";
@@ -24,42 +24,44 @@ export const OnePlayerGameScreen: React.FC = () => {
           newSquares[bestMove] = "O";
           setSquares(newSquares);
           setIsXNext(true);
-  
+
           const winningPlayer = calculateWinner(newSquares);
           if (winningPlayer) {
             setWinner(winningPlayer);
-            setIsModalVisible(true); 
+            setIsModalVisible(true);
+          } else if (!newSquares.includes(null)) {
+            setWinner(null);
+            setIsModalVisible(true);
           }
         }
       }, 1000);
       return () => clearTimeout(timer);
     }
   }, [isXNext, squares, winner]);
-  
+
   const handlePress = (i: number) => {
     if (squares[i] || winner || !isXNext) return;
-  
+
     const newSquares = squares.slice();
     newSquares[i] = "X";
     setSquares(newSquares);
     setIsXNext(false);
-  
+
     const winningPlayer = calculateWinner(newSquares);
     if (winningPlayer) {
       setWinner(winningPlayer);
-      setIsModalVisible(true); 
+      setIsModalVisible(true);
+    } else if (!newSquares.includes(null)) {
+      setWinner(null);
+      setIsModalVisible(true);
     }
   };
-
-  // const handleNewGame = () => {
-  //   setWinner(null);
-  //   setIsModalVisible(false);
-  // };
 
   const handleReset = () => {
     setSquares(Array(9).fill(null));
     setIsXNext(true);
     setWinner(null);
+    setIsModalVisible(false);
   };
 
   return (
@@ -83,7 +85,7 @@ export const OnePlayerGameScreen: React.FC = () => {
       <WinnerModal
         isVisible={isModalVisible}
         winner={winner}
-        player1Name="Player 1"
+        player1Name={player1Name}
         player2Name="Computer"
         onNewGame={handleReset}
         onClose={() => setIsModalVisible(false)}
@@ -97,36 +99,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#1B78AF",
     height: "100%",
     justifyContent: "space-around",
-    alignItems: "center",
-  },
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
-  board: {
-    backgroundColor: "#eee",
-    borderWidth: 1,
-    borderColor: "#999",
-  },
-  boardRow: {
-    flexDirection: "row",
-  },
-  square: {
-    width: 100,
-    height: 100,
-    borderWidth: 1,
-    borderColor: "#999",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-  },
-  squareText: {
-    fontSize: 36,
-  },
-  game: {
-    flex: 1,
-    justifyContent: "center",
     alignItems: "center",
   },
 });
