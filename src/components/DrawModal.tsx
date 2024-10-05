@@ -13,26 +13,10 @@ interface DrawModalProps {
 
 export const DrawModal: React.FC<DrawModalProps> = ({
   isVisible,
-  // winner,
-  // player1Name,
-  // player2Name,
   onNewGame,
   onClose,
 }) => {
-  // const message = winner
-  //   ? `Winner: ${winner === "X" ? player1Name : player2Name || "Computer"}`
-  //   : "It's a Draw!";
-
-  // console.log('Winner2: ', winner)
-  // const winnerMessage = (winner: string) => {
-  //   if (winner === "X"){
-  //     return "Winner: " + " " + player1Name
-  //   } else if (winner === null) {
-  //     return "It's a Draw!"
-  //   } else {
-  //     return "Winner: " + " " + player2Name || "Computer"
-  //   }
-  // }
+  
 
   return (
     <Modal visible={isVisible} transparent={true} animationType="slide">

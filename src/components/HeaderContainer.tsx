@@ -17,7 +17,6 @@ export const HeaderContainer = ({
   isXNext,
 }: HeaderContainerProps) => {
   const navigation = useNavigation();
-  console.log(player2Name)
   return (
     <View style={styles.container}>
       <TouchableOpacity

@@ -36,8 +36,6 @@ export const PlayboardScreen = () => {
     setWinner(null);
   };
 
-  console.log('Player 2: ', player2Name)
-
   return (
     <View style={styles.container}>
       <HeaderContainer

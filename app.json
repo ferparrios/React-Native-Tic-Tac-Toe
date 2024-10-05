@@ -2,7 +2,7 @@
   "expo": {
     "name": "Simple Tic Tac Toe",
     "slug": "tic-tac-toe-game",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/tic-tac-toe-logo.png",
     "userInterfaceStyle": "light",
@@ -12,7 +12,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ferparrios.tictactoegame"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,6 +30,15 @@
         "projectId": "d472c175-6d5f-4bd1-8b07-77514e05afb1"
       }
     },
-    "owner": "ferparrios"
+    "owner": "ferparrios",
+    "plugins": [
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-7992487598629612~4094276459",
+          "iosAppId": "ca-app-pub-7992487598629612~9539272308"
+        }
+      ]
+    ]
   }
 }
