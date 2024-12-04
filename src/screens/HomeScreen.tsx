@@ -1,7 +1,7 @@
 // HomeScreen.tsx
 import React, { useState } from "react";
 // import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, View, Image, SafeAreaView } from "react-native";
+import { StyleSheet, View, Image, SafeAreaView, Platform } from "react-native";
 import TicTacToeLogo from "../../assets/tic-tac-toe-logo.png";
 import { CommonButton } from "../components/CommonButton";
 import { PlayerNameModal } from "../components/PlayerNameModal";
@@ -13,7 +13,10 @@ import {
 import { StatusBar } from "expo-status-bar";
 
 export const HomeScreen = () => {
-  const adUnitId = TestIds.BANNER;
+  
+  const iOSadUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-7992487598629612~9539272308';
+  const androidadUnitId = __DEV__ ?  TestIds.BANNER: "ca-app-pub-7992487598629612~4094276459"
+  
   const [isModalVisible, setModalVisible] = useState<boolean>(false);
   const [mode, setMode] = useState<"onePlayer" | "twoPlayers">("onePlayer");
 
@@ -48,7 +51,7 @@ export const HomeScreen = () => {
         }}
       >
         <BannerAd
-          unitId={adUnitId}
+          unitId={Platform.OS === "android" ? androidadUnitId : iOSadUnitId}
           size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,
